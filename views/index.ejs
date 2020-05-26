@@ -1,0 +1,40 @@
+<!DOCTYPE html>>
+<html lang="en">
+    <head>
+        <title>0'Reilly Introduction to WebRTC</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <video autoplay></video>
+
+        <script>
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+            var constarints = {
+                audio: true, 
+                video: {
+                    mandatory: {
+                        maxWidth: 640,
+                        maxHeight: 640,
+                        minHeight: 360,
+                        minWidth: 360
+                    }
+                }
+            };
+            var videoArea = document.querySelector("video");
+            navigator.getUserMedia(constarints, onSuccess, onError);
+
+            function onSuccess(stream) {
+                console.log("Success! We have a stream!");
+                // videoArea.src = window.URL.createObjectURL(stream);
+                videoArea.srcObject=stream;
+                video.className = "grayscale_filter";
+                videoArea.play();
+            }
+
+            function onError() {
+                console.log("error");
+            }
+        </script>
+    </body>
+</html>
